@@ -78,7 +78,7 @@ this every 3 hours to stay protected from the latest threats.
 3. Choose **Author from scratch** on the *Create function* page
 4. Name your function `bucket-antivirus-update` when prompted on the
 *Configure function* step.
-5. Set *Runtime* to `Python 2.7`
+5. Set *Runtime* to `Python 3.7`
 6. Create a new role name `bucket-antivirus-update` that uses the
 following policy document
 
@@ -120,7 +120,7 @@ and set its value to the name of the bucket created to store your AV
 definitions.
 11. Set *Lambda handler* to `update.lambda_handler`
 12. Under *Basic Settings*, set *Timeout* to **5 minutes** and *Memory* to
-**512**
+**2048**
 13. Save and test your function.  If prompted for test data, just use
 the default provided.
 
@@ -131,7 +131,7 @@ the default provided.
 2. From the AWS Lambda Dashboard, click **Create function**
 3. Choose **Author from scratch** on the *Create function* page
 4. Name your function `bucket-antivirus-function`
-5. Set *Runtime* to `Python 2.7`
+5. Set *Runtime* to `Python 3.7`
 6. Create a new role name `bucket-antivirus-function` that uses the
 following policy document
 
@@ -204,7 +204,7 @@ created in step 1.
 and set its value to the name of the bucket created to store your AV
 definitions. If your bucket is `s3://my-bucket`, the value should be `my-bucket`.
 12. Under *Basic settings*, set *Timeout* to **5 minutes** and *Memory* to
-**1024**
+**2048**
 13. Save the function.  Testing is easiest performed by uploading a
 file to the bucket configured as the trigger in step 4.
 
