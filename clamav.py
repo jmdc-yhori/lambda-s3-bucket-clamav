@@ -31,7 +31,7 @@ RE_SEARCH_DIR = r"SEARCH_DIR\(\"=([A-z0-9\/\-_]*)\"\)"
 def current_library_search_path():
     ld_verbose = check_output(["ld", "--verbose"])
     rd_ld = re.compile(RE_SEARCH_DIR)
-    return rd_ld.findall(ld_verbose)
+    return rd_ld.findall(ld_verbose.decode('utf-8'))
 
 
 def update_defs_from_s3(bucket, prefix):

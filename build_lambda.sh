@@ -25,16 +25,23 @@ pip install pipenv
 pipenv install
 
 pushd /tmp
-yumdownloader -x \*i686 --archlist=x86_64 clamav clamav-lib clamav-update json-c pcre2
+yumdownloader -x \*i686 --archlist=x86_64 clamav clamav-lib clamav-update json-c pcre2 libprelude gnutls libtasn1 lib64nettle nettle 
 rpm2cpio clamav-0*.rpm | cpio -idmv
 rpm2cpio clamav-lib*.rpm | cpio -idmv
 rpm2cpio clamav-update*.rpm | cpio -idmv
 rpm2cpio json-c*.rpm | cpio -idmv
 rpm2cpio pcre*.rpm | cpio -idmv
+rpm2cpio gnutls* | cpio -idmv
+rpm2cpio nettle* | cpio -idmv
+rpm2cpio lib* | cpio -idmv
+rpm2cpio *.rpm | cpio -idmv
+rpm2cpio libtasn1* | cpio -idmv
 popd
 mkdir -p bin
 cp /tmp/usr/bin/clamscan /tmp/usr/bin/freshclam /tmp/usr/lib64/* bin/.
 echo "DatabaseMirror database.clamav.net" > bin/freshclam.conf
+
+cp /usr/lib64/libpcre.so.1 bin/
 
 mkdir -p build
 #Ensure permissions on python files are correct
@@ -45,7 +52,7 @@ VENV=$(pipenv --venv 2>&1)
 LIB_PATH="$VENV/lib/*/site-packages"
 echo "Lib Path: $LIB_PATH"
 cd $LIB_PATH
-zip -r9 $lambda_output_file *
+zip -9r $lambda_output_file *
 
 #Create a sum file
 
